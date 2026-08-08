@@ -1,0 +1,248 @@
+:root {
+  --bg: #faf7f3;
+  --ink: #1a1a2e;
+  --ink-soft: #4a4a5e;
+  --accent: #4f46e5;
+  --accent-dark: #3730a3;
+  --card-dark: #1c1b2e;
+  --border: #e8e3da;
+  --muted: #8b8794;
+  --success: #16a34a;
+  --danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.site-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.nav__link:hover {
+  color: var(--accent);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--card-dark), #2d1b4e);
+  border-radius: 20px;
+  padding: 48px;
+  color: #fff;
+  margin: 32px 0;
+}
+
+.eyebrow {
+  color: #a78bfa;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 12px 0 16px;
+  line-height: 1.2;
+}
+
+.hero p {
+  color: #d1cfe0;
+  font-size: 16px;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.9; }
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn--block { width: 100%; }
+
+.btn--ghost {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.card__body { padding: 28px; }
+
+.form-card {
+  max-width: 440px;
+  margin: 48px auto;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Ticket cards */
+.ticket-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.ticket-card__header {
+  background: var(--card-dark);
+  color: #fff;
+  padding: 18px 20px;
+  position: relative;
+}
+
+.ticket-card__label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #a78bfa;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.ticket-card__title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.ticket-card__footer {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket-card__price {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* Forms */
+.field { margin-bottom: 18px; }
+
+.field__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink-soft);
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Misc */
+.muted { color: var(--muted); }
+.mt-2 { margin-top: 8px; }
+.mt-4 { margin-top: 24px; }
+.mt-6 { margin-top: 40px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge--success { background: #dcfce7; color: var(--success); }
+.badge--danger { background: #fee2e2; color: var(--danger); }
