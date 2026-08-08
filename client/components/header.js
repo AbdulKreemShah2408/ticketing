@@ -1,5 +1,3 @@
-"use client";
-import { useCurrentUser } from "@/context/current-user-context";
 import Link from "next/link";
 
 export default function Header() {
