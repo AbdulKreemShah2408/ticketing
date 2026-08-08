@@ -4,7 +4,7 @@ import useRequest from "../../hooks/use-request";
 import Router from 'next/router';
 const OrderShow=({order,currentUser})=>{
     const [timeLeft,setTimeLeft]=useState(0);
-    const {doRequest,errrors}=useRequest({
+    const {doRequest,errors}=useRequest({
         url:'/api/payments',
         method:'post',
         body:{
