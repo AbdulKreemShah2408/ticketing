@@ -3,6 +3,7 @@ import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
 export default () => {
+  const [failed, setFailed] = useState(false);
   const { doRequest } = useRequest({
     url: '/api/users/signout',
     method: 'post',
