@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
+import Link from 'next/link';
 
 const signup = () => {
   const [email, setEmail] = useState('');
@@ -8,31 +9,59 @@ const signup = () => {
   const { doRequest, errors } = useRequest({
     url: "/api/users/signup",
     method: 'post',
-    body: {
-      email, password
-    },
+    body: { email, password },
     onSuccess: () => Router.push('/')
   });
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
     await doRequest();
   };
 
-  return <form onSubmit={onSubmit}>
-    <h1> Sign Up </h1>
-    <div className="form-group">
-      <label>Email Address</label>
-      <input onChange={e => setEmail(e.target.value)} className="form-control" />
+  return (
+    <div className="card form-card mt-6">
+      <div className="card__body">
+        <span className="eyebrow">Get started</span>
+        <h1 className="page-title" style={{ fontSize: 26, marginTop: 6 }}>
+          Create your account
+        </h1>
+
+        <form onSubmit={onSubmit} className="mt-4">
+          <div className="field">
+            <label className="field__label">Email address</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input"
+              type="email"
+              placeholder="you@example.com"
+            />
+          </div>
+          <div className="field">
+            <label className="field__label">Password</label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              className="input"
+              placeholder="Choose a password"
+            />
+          </div>
+          {errors}
+          <button type="submit" className="btn btn--primary btn--block mt-2">
+            Sign up
+          </button>
+        </form>
+
+        <p className="muted mt-4" style={{ fontSize: 14, textAlign: "center" }}>
+          Already have an account?{" "}
+          <Link href="/auth/signin" style={{ color: "var(--accent)", fontWeight: 550 }}>
+            Sign in
+          </Link>
+        </p>
+      </div>
     </div>
-    <div className="form-group">
-      <label>Password</label>
-      <input type="password" onChange={e => setPassword(e.target.value)} className="form-control" />
-    </div>
-    {errors}
-    <button className="btn btn-primary">Sign Up</button>
-  </form>;
+  );
 };
 
 export default signup;
