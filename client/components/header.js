@@ -1,33 +1,39 @@
-import Link from 'next/link';
+"use client";
+import { useCurrentUser } from "@/context/current-user-context";
+import Link from "next/link";
 
-export default ({ currentUser }) => {
-  const links = [
-    !currentUser && { label: 'Sign Up', href: '/auth/signup' },
-    !currentUser && { label: 'Sign In', href: '/auth/signin' },
-    currentUser && {label:'Sell Tickets', href:'/ticket/new'},
-    currentUser && {label:'My Orders',href:'/orders'},
-    currentUser && { label: 'Sign Out', href: '/auth/signout' },
-  ]
-    .filter((linkConfig) => linkConfig)
-    .map(({ label, href }) => {
-      return (
-        <li key={href} className="nav-item">
-          <Link className="nav-link" href={href}>
-            {label}
-          </Link>
-        </li>
-      );
-    });
+export default function Header() {
+  const currentUser = useCurrentUser();
+
+  const links = currentUser
+    ? [
+        { label: "Sell Tickets", href: "/tickets/new" },
+        { label: "My Orders", href: "/orders" },
+        { label: "Sign Out", href: "/auth/signout" },
+      ]
+    : [
+        { label: "Sign In", href: "/auth/signin" },
+        { label: "Sign Up", href: "/auth/signup" },
+      ];
 
   return (
-    <nav className="navbar navbar-light bg-light">
-      <Link className="navbar-brand" href="/">
-        GitTix
-      </Link>
+    <header className="site-header">
+      <div className="container site-header__inner">
+        <Link href="/" className="brand">
+          <span className="brand__mark">
+            <span>◆</span>
+          </span>
+          Tickify
+        </Link>
 
-      <div className="d-flex justify-content-end">
-        <ul className="nav d-flex align-items-center">{links}</ul>
+        <nav className="nav">
+          {links.map(({ label, href }) => (
+            <Link key={href} href={href} className="nav__link">
+              {label}
+            </Link>
+          ))}
+        </nav>
       </div>
-    </nav>
+    </header>
   );
-};
+}
