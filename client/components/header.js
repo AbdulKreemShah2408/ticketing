@@ -1,37 +1,32 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-export default function Header() {
-  const currentUser = useCurrentUser();
-
-  const links = currentUser
-    ? [
-        { label: "Sell Tickets", href: "/tickets/new" },
-        { label: "My Orders", href: "/orders" },
-        { label: "Sign Out", href: "/auth/signout" },
-      ]
-    : [
-        { label: "Sign In", href: "/auth/signin" },
-        { label: "Sign Up", href: "/auth/signup" },
-      ];
-
-  return (
-    <header className="site-header">
-      <div className="container site-header__inner">
-        <Link href="/" className="brand">
-          <span className="brand__mark">
-            <span>◆</span>
-          </span>
-          Tickify
+const Header = ({ currentUser }) => {
+  const links = [
+    !currentUser && { label: 'Sign Up', href: '/auth/signup' },
+    !currentUser && { label: 'Sign In', href: '/auth/signin' },
+    currentUser && { label: 'Sell Tickets', href: '/tickets/new' },
+    currentUser && { label: 'My Orders', href: '/orders' },
+    currentUser && { label: 'Sign Out', href: '/auth/signout' },
+  ]
+    .filter(linkConfig => linkConfig)
+    .map(({ label, href }) => {
+      return <li key={href} className="nav-item">
+        <Link href={href}>
+          <a className="nav-link">{label}</a>
         </Link>
+      </li>;
+    });
 
-        <nav className="nav">
-          {links.map(({ label, href }) => (
-            <Link key={href} href={href} className="nav__link">
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
-  );
-}
+  return <nav className="navbar navbar-light bg-light">
+    <Link href="/">
+      <a className="navbar-brand">GitTix</a>
+    </Link>
+    <div className="d-flex justify-content-end">
+      <ul className="nav d-flex align-items-center">
+        {links}
+      </ul>
+    </div>
+  </nav>;
+};
+
+export default Header;
